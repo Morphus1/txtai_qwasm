@@ -7,6 +7,7 @@ import os
 import sys
 
 from fastapi import APIRouter, FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from .base import API
 from .factory import Factory
@@ -18,6 +19,27 @@ app = FastAPI()
 
 # Global API instance
 INSTANCE = None
+
+# Configure CORS
+origins = [
+    "http://localhost",
+    "http://192.168.100.26:3000",
+    "http://192.168.100.26:5173",
+    "http://192.168.100.19:3000",
+    "http://192.168.100.19:5173",
+    "https://192.168.100.19:3000",
+    "https://192.168.100.19:5173",
+    # Add any other allowed origins here
+]
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 def get():

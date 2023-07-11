@@ -1,7 +1,7 @@
 """
 Router imports
 """
-
+from . import qwasm
 from . import caption
 from . import embeddings
 from . import entity
